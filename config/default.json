@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://users:MFender1@trackerapp.bcyye.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    "jwtSecret": "secret"
+}
