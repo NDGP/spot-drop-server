@@ -11,7 +11,7 @@ const User = require('../models/User')
 // @access    Private
 router.get('/', auth, async (req, res) => {
   try {
-    const drops = await Drops.find({ user: req.user.id }).sort({
+    const drops = await Drops.find({ user: req.user._id }).sort({
       date: -1
     });
     res.json(drops);
@@ -56,16 +56,16 @@ router.post(
 
 
 // @route     DELETE api/contacts/:id
-// @desc      Delete contact
+// @desc      Delete drop
 // @access    Private
 router.delete('/:id', auth, async (req, res) => {
   try {
     let drop = await Drops.findById(req.params.id);
-
+    console.log(drop.user)
     if (!drop) return res.status(404).json({ msg: 'Drop not found' });
 
     // Make sure user owns contact
-    if (drops.user.toString() !== req.user.id) {
+    if (drop.user.toString() !== req.user.id) {
       return res.status(401).json({ msg: 'Not authorized' });
     }
 
